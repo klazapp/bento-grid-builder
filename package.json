@@ -51,13 +51,13 @@
     "css-grid"
   ],
   "license": "MIT",
-  "author": "",
+  "author": "klazapp",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/bento-grid-builder.git"
+    "url": "git+https://github.com/klazapp/bento-grid-builder.git"
   },
-  "homepage": "https://github.com/yourusername/bento-grid-builder#readme",
+  "homepage": "https://github.com/klazapp/bento-grid-builder#readme",
   "bugs": {
-    "url": "https://github.com/yourusername/bento-grid-builder/issues"
+    "url": "https://github.com/klazapp/bento-grid-builder/issues"
   }
 }
