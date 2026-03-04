@@ -1,6 +1,6 @@
 {
   "name": "bento-grid-builder",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A flexible, configurable bento grid layout system for React",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

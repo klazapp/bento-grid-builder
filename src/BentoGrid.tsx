@@ -65,11 +65,12 @@ function useGridStyles() {
         grid-template-rows: var(--bento-row-heights, repeat(var(--bento-rows, 2), minmax(0, 1fr)));
         column-gap: var(--bento-column-gap, var(--bento-gap, 16px));
         row-gap: var(--bento-row-gap, var(--bento-gap, 16px));
-        height: var(--bento-height, auto);
       }
       .bento-cell {
         grid-column: var(--bento-col, 1) / span var(--bento-col-span, 1);
         grid-row: var(--bento-row, 1) / span var(--bento-row-span, 1);
+        min-height: 0;
+        overflow: hidden;
       }
     `;
     document.head.appendChild(style);
