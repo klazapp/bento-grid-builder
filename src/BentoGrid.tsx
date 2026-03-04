@@ -62,9 +62,10 @@ function useGridStyles() {
       .bento-grid {
         display: grid;
         grid-template-columns: repeat(var(--bento-columns, 3), 1fr);
-        grid-template-rows: repeat(var(--bento-rows, 2), minmax(0, 1fr));
+        grid-template-rows: var(--bento-row-heights, repeat(var(--bento-rows, 2), minmax(0, 1fr)));
         column-gap: var(--bento-column-gap, var(--bento-gap, 16px));
         row-gap: var(--bento-row-gap, var(--bento-gap, 16px));
+        height: var(--bento-height, auto);
       }
       .bento-cell {
         grid-column: var(--bento-col, 1) / span var(--bento-col-span, 1);
@@ -267,15 +268,22 @@ export function BentoGrid<TData>({
     gap = 16,
     columnGap,
     rowGap,
+    rowHeights,
     placements,
   } = resolvedLayout;
   const calculatedRows =
     rows ?? Math.max(...placements.map((p) => p.row + (p.rowSpan ?? 1) - 1), 1);
 
+  // Compute row template: use custom rowHeights if provided, otherwise equal 1fr rows
+  const rowTemplate = rowHeights
+    ? rowHeights.join(" ")
+    : `repeat(${calculatedRows}, minmax(0, 1fr))`;
+
   // Grid uses CSS custom properties - Tailwind classes can override the CSS rules
   const gridStyle: React.CSSProperties = {
     "--bento-columns": columns,
     "--bento-rows": calculatedRows,
+    "--bento-row-heights": rowTemplate,
     "--bento-gap": `${gap}px`,
     "--bento-column-gap": `${columnGap ?? gap}px`,
     "--bento-row-gap": `${rowGap ?? gap}px`,
@@ -478,15 +486,22 @@ export function UnifiedBentoGrid<TData>({
     gap = 16,
     columnGap,
     rowGap,
+    rowHeights,
     placements,
   } = resolvedLayout;
   const calculatedRows =
     rows ?? Math.max(...placements.map((p) => p.row + (p.rowSpan ?? 1) - 1), 1);
 
+  // Compute row template: use custom rowHeights if provided, otherwise equal 1fr rows
+  const rowTemplate = rowHeights
+    ? rowHeights.join(" ")
+    : `repeat(${calculatedRows}, minmax(0, 1fr))`;
+
   // Grid uses CSS custom properties - Tailwind classes can override the CSS rules
   const gridStyle: React.CSSProperties = {
     "--bento-columns": columns,
     "--bento-rows": calculatedRows,
+    "--bento-row-heights": rowTemplate,
     "--bento-gap": `${gap}px`,
     "--bento-column-gap": `${columnGap ?? gap}px`,
     "--bento-row-gap": `${rowGap ?? gap}px`,

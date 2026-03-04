@@ -66,6 +66,10 @@ export function layoutBuilder(columns: number) {
       config.rows = value;
       return builder;
     },
+    rowHeights(heights: string[]) {
+      config.rowHeights = heights;
+      return builder;
+    },
     place(
       cardId: string,
       col: number,

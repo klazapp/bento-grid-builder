@@ -89,6 +89,8 @@ export interface BentoLayoutConfig {
   columnGap?: number;
   /** Gap between rows in pixels (overrides gap for rows) */
   rowGap?: number;
+  /** Custom row heights (e.g., ["1fr", "2fr", "100px", "auto"]) */
+  rowHeights?: string[];
   /** Card placements in the grid */
   placements: CardPlacement[];
 }

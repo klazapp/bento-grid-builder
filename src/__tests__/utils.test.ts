@@ -47,6 +47,30 @@ describe("layoutBuilder", () => {
     expect(layout.columnGap).toBe(20);
     expect(layout.rowGap).toBe(15);
   });
+
+  it("supports custom rowHeights", () => {
+    const layout = layoutBuilder(4)
+      .rows(4)
+      .rowHeights(["1fr", "1fr", "2fr", "1fr"])
+      .gap(16)
+      .place("card1", 1, 1)
+      .place("card2", 1, 2)
+      .place("card3", 1, 3, { rowSpan: 2 })
+      .build();
+
+    expect(layout.rows).toBe(4);
+    expect(layout.rowHeights).toEqual(["1fr", "1fr", "2fr", "1fr"]);
+    expect(layout.placements).toHaveLength(3);
+  });
+
+  it("supports mixed unit rowHeights", () => {
+    const layout = layoutBuilder(3)
+      .rows(3)
+      .rowHeights(["100px", "1fr", "auto"])
+      .build();
+
+    expect(layout.rowHeights).toEqual(["100px", "1fr", "auto"]);
+  });
 });
 
 describe("validateLayout", () => {
